@@ -1,4 +1,4 @@
-package matrixmultiplication;
+package matrixmultiplication.Parallel;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
