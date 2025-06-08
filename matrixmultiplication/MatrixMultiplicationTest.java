@@ -24,16 +24,29 @@ public class MatrixMultiplicationTest {
 
             // Concurrent multiplication with different thread counts
             for (int threadCount : threadCounts) {
-                MatrixMultiplier concurrent = new ConcurrentMatrixMultiplier(threadCount);
-                long startCon = System.nanoTime();
-                double[][] resultCon = concurrent.multiply(matrixA, matrixB);
-                long endCon = System.nanoTime();
-                double timeCon = (endCon - startCon) / 1e6;
-                System.out.printf("Concurrent Time (%d threads): %.2f ms%n", threadCount, timeCon);
+                // Manual Threads
+                MatrixMultiplier manual = new ConcurrentMatrixMultiplier(threadCount);
+                long startManual = System.nanoTime();
+                double[][] resultManual = manual.multiply(matrixA, matrixB);
+                long endManual = System.nanoTime();
+                double timeManual = (endManual - startManual) / 1e6;
+                System.out.printf("%s Time: %.2f ms%n", manual.getName(), timeManual);
 
-                // Verify correctness
-                boolean correct = MatrixUtils.areMatricesEqual(resultSeq, resultCon, tolerance);
-                System.out.println("Results Match (" + threadCount + " threads): " + (correct ? "YES" : "NO"));
+                boolean correctManual = MatrixUtils.areMatricesEqual(resultSeq, resultManual, tolerance);
+                System.out.printf("Results Match (%s): %s%n", manual.getName(), correctManual ? "YES" : "NO");
+
+                // Thread Pool
+                MatrixMultiplier threadPool = new ThreadPoolMatrixMultiplier(threadCount);
+                long startTP = System.nanoTime();
+                double[][] resultTP = threadPool.multiply(matrixA, matrixB);
+                long endTP = System.nanoTime();
+                double timeTP = (endTP - startTP) / 1e6;
+                System.out.printf("%s Time: %.2f ms%n", threadPool.getName(), timeTP);
+
+                boolean correctTP = MatrixUtils.areMatricesEqual(resultSeq, resultTP, tolerance);
+                System.out.printf("Results Match (%s): %s%n", threadPool.getName(), correctTP ? "YES" : "NO");
+
+                System.out.println();
             }
 
             System.out.println();
