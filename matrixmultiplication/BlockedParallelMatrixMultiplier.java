@@ -82,6 +82,6 @@ public class BlockedParallelMatrixMultiplier implements MatrixMultiplier {
 
     @Override
     public String getName() {
-        return "BlockedParallel (ForkJoin, blockSize=" + blockSize + ", threads=" + parallelism + ")";
+        return "BlockedParallel (ForkJoin blockSize=" + blockSize + " threads=" + parallelism + ")";
     }
 } 
