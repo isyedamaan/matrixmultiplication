@@ -7,7 +7,7 @@ public class MatrixMultiplicationBenchmark {
     private static final int[] SIZES = {500, 1000, 2000}; // Add 5000, 10000 if you have enough RAM
     private static final int[] THREAD_COUNTS = {4, 8, 16};
     private static final double TOLERANCE = 1e-6;
-    private static final boolean OUTPUT_CSV = false; // Set true to write CSV
+    private static final boolean OUTPUT_CSV = true; // Set true to write CSV
 
     public static void main(String[] args) throws IOException {
         List<String[]> results = new ArrayList<>();
