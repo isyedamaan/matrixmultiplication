@@ -92,7 +92,6 @@ public class MatrixMultiplicationBenchmark {
             System.out.println("Results written to matrix_benchmark_results.csv");
         }
 
-        System.out.println("\nTip: For deeper profiling, use JVisualVM or Java Flight Recorder.");
     }
 
     private static BenchmarkResult runAndMeasure(MatrixMultiplier multiplier, double[][] A, double[][] B, int threads) {
